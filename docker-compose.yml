@@ -1,0 +1,14 @@
+version: '2'
+services:
+    ui:
+        build: ./ui
+        volumes: 
+            - ./ui:/opt/ui
+        links:
+            - api
+        ports:
+            - "4200:4200"
+    api:
+        build: ./api
+        volumes: 
+            - ./api:/opt/api
