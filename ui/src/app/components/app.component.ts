@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'piccolo-root',
@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['../styles/app.component.css']
 })
 export class AppComponent {
+  @Input() url: string;
   title = 'piccolo!!!';
+  
+  onKey(event) {
+    if (event.key === 'Enter') {
+      console.log('WILL MINIFY' + this.url);
+    }
+  }
 }

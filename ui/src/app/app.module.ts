@@ -7,6 +7,8 @@ import { AppComponent } from './components/app.component';
 
 import { MaterialModule } from '@angular/material';
 
+import {URLService} from './services/URLService';
+
 @NgModule({
   declarations: [
     AppComponent

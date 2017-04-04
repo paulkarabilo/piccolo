@@ -3,6 +3,6 @@
 </md-toolbar>
 <form class="piccolo-form">
   <md-input-container class="main-input-container">
-    <input mdInput placeholder="url" >
+    <input mdInput placeholder="url" [(ngModel)]="url" name="url" (keyup)="onKey($event)">
   </md-input-container>
 </form>
