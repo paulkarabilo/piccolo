@@ -9,10 +9,10 @@ export class URLService {
 
     }
     minify(url : string) : Promise<string> {
-        return this.http.get('/api/min').toPromise().then(r => r.json().data as string).catch(this.err);
+        return this.http.post('/api/min', {url}).toPromise().then(r => r.json().data as string).catch(this.err);
     }
     deminify(url: string) : Promise<string> {
-        return this.http.get('/api/demin').toPromise().then(r => r.json().data as string).catch(this.err);
+        return this.http.post('/api/demin', {url}).toPromise().then(r => r.json().data as string).catch(this.err);
     }
     err(e: any) {
         
