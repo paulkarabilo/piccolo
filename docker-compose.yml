@@ -12,3 +12,9 @@ services:
         build: ./api
         volumes: 
             - ./api:/opt/api
+        ports:
+            - "3000:3000"
+    db:
+        image: redis:alpine
+        ports:
+            - "6379:6379"
