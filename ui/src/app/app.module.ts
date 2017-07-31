@@ -5,9 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './components/app.component';
 
-import { MaterialModule } from '@angular/material';
+import { MdToolbarModule, MdInputModule } from '@angular/material';
 
-import {URLService} from './services/URLService';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
+import { URLService } from './services/URLService';
+
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -17,9 +21,11 @@ import {URLService} from './services/URLService';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot()
+    BrowserAnimationsModule,
+    MdToolbarModule,
+    MdInputModule
   ],
-  providers: [],
+  providers: [URLService],
   bootstrap: [AppComponent]
 })
 export class Piccolo {

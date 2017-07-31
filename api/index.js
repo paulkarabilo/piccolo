@@ -22,4 +22,4 @@ app.get('/api/demin/:b64', (req, res) => {
         res.send(-1);
     }
 });
-app.listen(3000, () => console.log("api running at http://localhost:3000/api"));
+app.listen(3000, '0.0.0.0', () => console.log("api running at http://localhost:3000/api"));

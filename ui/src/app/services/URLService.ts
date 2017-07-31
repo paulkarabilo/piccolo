@@ -8,11 +8,11 @@ export class URLService {
     constructor (private http : Http) {
 
     }
-    minify(url : string) : Promise<string> {
-        return this.http.post('/api/min', {url}).toPromise().then(r => r.json().data as string).catch(this.err);
+    minify(url : string) : Promise<string | void> {
+        return this.http.get(`/api/min/${url}`).toPromise().then(r => r.text() as string).catch(this.err);
     }
-    deminify(url: string) : Promise<string> {
-        return this.http.post('/api/demin', {url}).toPromise().then(r => r.json().data as string).catch(this.err);
+    deminify(url: string) : Promise<string | void> {
+        return this.http.get(`/api/demin/${url}`).toPromise().then(r => r.text() as string).catch(this.err);
     }
     err(e: any) {
         

@@ -6,4 +6,4 @@ WORKDIR /opt/ui
 
 EXPOSE 4200
 
-ENTRYPOINT ["ng", "serve", "--host", "0.0.0.0", "--proxy-config", "proxyconf.json"]
+ENTRYPOINT ["ng", "serve", "--proxy-config", "proxyconf.json", "--host", "0.0.0.0"]

@@ -1,8 +1,13 @@
 <md-toolbar color="primary">
   {{title}}
 </md-toolbar>
+
 <form class="piccolo-form">
   <md-input-container class="main-input-container">
     <input mdInput placeholder="url" [(ngModel)]="url" name="url" (keyup)="onKey($event)">
   </md-input-container>
 </form>
+
+<div class="piccolo-result" *ngIf="minified">
+  <a href="{{minified}}">{{minified}}</a>
+</div>

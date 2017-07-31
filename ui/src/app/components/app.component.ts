@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { URLService } from '../services/URLService';
 
 @Component({
   selector: 'piccolo-root',
@@ -7,11 +8,18 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   @Input() url: string;
-  title = 'piccolo!!!';
+  title: string = 'Piccolo - minimalistic URL minifier';
+  minified: string;
+
+  constructor(private urlService: URLService) {}
   
-  onKey(event) {
+  onKey(event) : void {
     if (event.key === 'Enter') {
-      console.log('WILL MINIFY' + this.url);
+      this.urlService.minify(this.url).then((response) => this.showResponse(response));
     }
+  }
+
+  showResponse(response) : void {
+    this.minified = `${location.origin}/${response}`;
   }
 }
