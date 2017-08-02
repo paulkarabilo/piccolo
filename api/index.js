@@ -3,15 +3,11 @@
 const express = require('express');
 const app = express();
 const redis = require('redis');
+const { convert, unconvert } = require('./converter');
 const client = redis.createClient({host: 'db', port: 6379});
-
-const SYM = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-'.split('');
-const BASE = SYM.length;
 
 let cache = {};
 
-let convert = (n) => n ? SYM[n % BASE] + convert(Math.floor(n / BASE)) : '';
-//let unconvert = (s, p = 0) => s && s.length ? unconvert(s.substr(1), p + 1) + SYM.indexOf(s[0]) * Math.pow(BASE, p) : 0
 
 app.get('/api', (req, res) => res.send('api ok'));
 
