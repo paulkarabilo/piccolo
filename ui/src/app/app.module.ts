@@ -14,9 +14,7 @@ import { URLService } from './services/URLService';
 import 'hammerjs';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,

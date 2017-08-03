@@ -11,7 +11,15 @@ export class AppComponent {
   title: string = 'Piccolo - minimalistic URL minifier';
   minified: string;
 
-  constructor(private urlService: URLService) {}
+  constructor(private urlService: URLService) {
+    if (location.pathname.length > 1) {
+      this.urlService.deminify(location.pathname.substr(1)).then(this.redirect)
+    }
+  }
+
+  redirect(response) {
+    if (response !== undefined) location = response;
+  }
   
   onKey(event) : void {
     if (event.key === 'Enter') {

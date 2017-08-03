@@ -3,16 +3,21 @@
 const express = require('express');
 const app = express();
 const redis = require('redis');
+const bodyParser = require('body-parser')
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 const { convert, unconvert } = require('./converter');
 const client = redis.createClient({host: 'db', port: 6379});
+
+
 
 let cache = {};
 
 
 app.get('/api', (req, res) => res.send('api ok'));
 
-app.get('/api/min/:url', (req, res) => {
-    let url = decodeURI(req.params.url);
+app.post('/api/min/', (req, res) => {
+    let url = decodeURI(req.body.url);
     if (cache[url]) {
         return res.status(200).send(cache[url]);
     }
@@ -33,8 +38,8 @@ app.get('/api/min/:url', (req, res) => {
     });
 });
 
-app.get('/api/demin/:cid', (req, res) => {
-    client.get(`urls:${req.params.cid}`, (err, url) => {
+app.post('/api/demin/', (req, res) => {
+    client.get(`urls:${req.body.cid}`, (err, url) => {
         if (err) {
             console.error(err);
             return res.status(500).send('ERROR: Could not fetch URL from DB');
