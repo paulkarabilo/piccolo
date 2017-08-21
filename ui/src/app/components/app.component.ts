@@ -8,6 +8,7 @@ import { URLService } from '../services/URLService';
 })
 export class AppComponent {
   @Input() url: string;
+  visible: boolean = false;
   title: string = 'Piccolo - minimalistic URL minifier';
   minified: string;
 
@@ -18,7 +19,11 @@ export class AppComponent {
   }
 
   redirect(response) {
-    if (response !== undefined) location = response;
+    if (response !== undefined) {
+      location.href = response.indexOf('://') !== -1 ? response : `//${response}`;
+    } else {
+      this.visible = true;
+    }
   }
   
   onKey(event) : void {
