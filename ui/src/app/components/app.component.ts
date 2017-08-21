@@ -15,6 +15,8 @@ export class AppComponent {
   constructor(private urlService: URLService) {
     if (location.pathname.length > 1) {
       this.urlService.deminify(location.pathname.substr(1)).then(this.redirect)
+    } else {
+      this.visible = true;
     }
   }
 
