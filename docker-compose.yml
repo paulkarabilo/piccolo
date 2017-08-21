@@ -1,4 +1,5 @@
 version: '2'
+
 services:
     ui:
         build: ./ui
@@ -12,9 +13,7 @@ services:
         build: ./api
         volumes: 
             - ./api:/opt/api
-        ports:
-            - "3000:3000"
+        depends_on:
+            - "db"
     db:
         image: redis:alpine
-        ports:
-            - "6379:6379"

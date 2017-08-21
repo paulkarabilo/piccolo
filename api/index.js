@@ -2,17 +2,14 @@
 
 const express = require('express');
 const app = express();
-const redis = require('redis');
+const redis = require('node-redis-native');
 const bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 const { convert, unconvert } = require('./converter');
-const client = redis.createClient({host: 'db', port: 6379});
-
-
+const client = new redis.Client({host: 'db', port: 6379});
 
 let cache = {};
-
 
 app.get('/api', (req, res) => res.send('api ok'));
 

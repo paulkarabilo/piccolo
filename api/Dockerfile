@@ -1,8 +1,7 @@
-FROM node:7
+FROM node:7-alpine
 
 WORKDIR /opt/api
 
-RUN npm install
 EXPOSE 3000
 
-ENTRYPOINT ["node", "index.js"] 
+ENTRYPOINT ["/opt/api/entrypoint.sh"]
