@@ -35,6 +35,6 @@ export class AppComponent {
   }
 
   showResponse(response) : void {
-    this.minified = `${location.origin}/${response}`;
+    this.minified = response ? `${location.origin}/${response}` : 'Some error occured';
   }
 }
