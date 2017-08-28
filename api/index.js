@@ -18,13 +18,13 @@ app.post('/api/min/', (req, res) => {
     if (cache[url]) {
         return res.status(200).send(cache[url]);
     }
-    client.incr('current_url_id', (err, id) => {
+    client.call('INCR current_url_id', (err, id) => {
         let cid = convert(id);
         if (err) {
             console.error(err);
             return res.status(500).send('ERROR: Could not increment ID');
         }
-        client.set(`urls:${cid}`, url, (err) => {
+        client.call(`set urls:${cid} ${url}`, (err) => {
             if (err) {
                 console.error(err);
                 return res.status(500).send('ERROR: Could not write URL to DB');
@@ -36,7 +36,7 @@ app.post('/api/min/', (req, res) => {
 });
 
 app.post('/api/demin/', (req, res) => {
-    client.get(`urls:${req.body.cid}`, (err, url) => {
+    client.call(`get urls:${req.body.cid}`, (err, url) => {
         if (err) {
             console.error(err);
             return res.status(500).send('ERROR: Could not fetch URL from DB');
